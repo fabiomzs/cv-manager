@@ -2,6 +2,8 @@
 GO = go
 PROJECT_DIR = $(shell pwd)
 GQLGEN = github.com/99designs/gqlgen
+DB_URL = mongodb://root:pass@localhost:27017
+DB_NAME = cv_manager
 
 #Environment 
 PORT = 9090
@@ -13,7 +15,7 @@ build:
 
 run: build
 	@echo "==> (1/1) Running server..."
-	@$(PROJECT_DIR)/bin/server	
+	@DB_NAME=$(DB_NAME) DB_URL=$(DB_URL) PORT=$(PORT) $(PROJECT_DIR)/bin/server
 
 clean:
 	@echo "==> (1/2) Cleaning up..."
